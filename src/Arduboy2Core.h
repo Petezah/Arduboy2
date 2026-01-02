@@ -14,7 +14,11 @@
 
 // main hardware compile flags
 
-#if !defined(ARDUBOY_10) && !defined(AB_DEVKIT)
+#if defined(__AVR_ATtiny85__)
+#define ARDUBOY_TINY
+#endif
+
+#if !defined(ARDUBOY_10) && !defined(AB_DEVKIT) && !defined(ARDUBOY_TINY)
 /* defaults to Arduboy Release 1.0 if not using a boards.txt file
  *
  * we default to Arduboy Release 1.0 if a compile flag has not been
@@ -196,6 +200,55 @@
 // be dangerous and fry your hardware (because of the devkit wiring).
 //
 // Reference: https://github.com/Arduboy/Arduboy/issues/108
+
+// ----- ArduboyTiny (ATtiny85) pins
+#elif defined(ARDUBOY_TINY)
+
+#define SCL_PORT PORTB  // Display SCL port
+#define SCL_BIT PORTB4  // Display SCL physical bit number
+
+#define SDA_PORT PORTB  // Display SDA port
+#define SDA_BIT PORTB3  // Display SDA physical bit number
+
+#define SSD1306_SA 0x78 // Display slave address
+
+// NO_RGB_LED
+
+// bit values for button states
+// these are determined by the buttonsState() function
+#define LEFT_BUTTON _BV(5)  /**< The Left button value for functions requiring a bitmask */
+#define RIGHT_BUTTON _BV(6) /**< The Right button value for functions requiring a bitmask */
+#define A_BUTTON _BV(3)     /**< The A button value for functions requiring a bitmask */
+
+#define PIN_LEFT_BUTTON A2
+#define LEFT_BUTTON_PORT PORTF
+#define LEFT_BUTTON_PORTIN PINF
+#define LEFT_BUTTON_DDR DDRF
+#define LEFT_BUTTON_BIT PORTF5
+
+#define PIN_RIGHT_BUTTON A1
+#define RIGHT_BUTTON_PORT PORTF
+#define RIGHT_BUTTON_PORTIN PINF
+#define RIGHT_BUTTON_DDR DDRF
+#define RIGHT_BUTTON_BIT PORTF6
+
+#define PIN_A_BUTTON 7
+#define A_BUTTON_PORT PORTE
+#define A_BUTTON_PORTIN PINE
+#define A_BUTTON_DDR DDRE
+#define A_BUTTON_BIT PORTE6
+
+#define PIN_SPEAKER_1 5  /**< The pin number of the first lead of the speaker */
+#define PIN_SPEAKER_2 13 /**< The pin number of the second lead of the speaker */
+
+// #define SPEAKER_1_PORT PORTC
+// #define SPEAKER_1_DDR DDRC
+// #define SPEAKER_1_BIT PORTC6
+
+// #define SPEAKER_2_PORT PORTC
+// #define SPEAKER_2_DDR DDRC
+// #define SPEAKER_2_BIT PORTC7
+// -----------------------
 
 #endif
 // --------------------
