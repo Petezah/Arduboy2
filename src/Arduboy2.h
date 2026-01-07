@@ -883,6 +883,7 @@ class Arduboy2Base : public Arduboy2Core
    */
   static bool nextFrame();
 
+#ifndef ARDUBOY_TINY
   /** \brief
    * Indicate that it's time to render the next frame, and visually indicate
    * if the code is running slower than the desired frame rate.
@@ -911,6 +912,7 @@ class Arduboy2Base : public Arduboy2Core
    * \see nextFrame() cpuLoad() setFrameRate() setFrameDuration()
    */
   static bool nextFrameDEV();
+#endif // ARDUBOY_TINY
 
   /** \brief
    * Indicate if the specified number of frames has elapsed.

@@ -213,6 +213,10 @@
 #define SSD1306_SA 0x78 // Display slave address
 
 // NO_RGB_LED
+// map all LEDs to 0; the LED code is all no-op anyway
+#define RED_LED 0
+#define GREEN_LED 0
+#define BLUE_LED 0
 
 // bit values for button states
 // these are determined by the buttonsState() function
@@ -220,34 +224,29 @@
 #define RIGHT_BUTTON _BV(6) /**< The Right button value for functions requiring a bitmask */
 #define A_BUTTON _BV(3)     /**< The A button value for functions requiring a bitmask */
 
-#define PIN_LEFT_BUTTON A2
-#define LEFT_BUTTON_PORT PORTF
-#define LEFT_BUTTON_PORTIN PINF
-#define LEFT_BUTTON_DDR DDRF
-#define LEFT_BUTTON_BIT PORTF5
+//#define PIN_LEFT_BUTTON A2
+#define LEFT_BUTTON_PORT PORTB
+#define LEFT_BUTTON_PORTIN PINB
+#define LEFT_BUTTON_DDR DDRB
+#define LEFT_BUTTON_BIT PORTB0
 
-#define PIN_RIGHT_BUTTON A1
-#define RIGHT_BUTTON_PORT PORTF
-#define RIGHT_BUTTON_PORTIN PINF
-#define RIGHT_BUTTON_DDR DDRF
-#define RIGHT_BUTTON_BIT PORTF6
+//#define PIN_RIGHT_BUTTON A1
+#define RIGHT_BUTTON_PORT PORTB
+#define RIGHT_BUTTON_PORTIN PINB
+#define RIGHT_BUTTON_DDR DDRB
+#define RIGHT_BUTTON_BIT PORTB2
 
-#define PIN_A_BUTTON 7
-#define A_BUTTON_PORT PORTE
-#define A_BUTTON_PORTIN PINE
-#define A_BUTTON_DDR DDRE
-#define A_BUTTON_BIT PORTE6
+//#define PIN_A_BUTTON 7
+#define A_BUTTON_PORT PORTB
+#define A_BUTTON_PORTIN PINB
+#define A_BUTTON_DDR DDRB
+#define A_BUTTON_BIT PORTB5
 
-#define PIN_SPEAKER_1 5  /**< The pin number of the first lead of the speaker */
-#define PIN_SPEAKER_2 13 /**< The pin number of the second lead of the speaker */
+//#define PIN_SPEAKER_1 5  /**< The pin number of the first lead of the speaker */
 
-// #define SPEAKER_1_PORT PORTC
-// #define SPEAKER_1_DDR DDRC
-// #define SPEAKER_1_BIT PORTC6
-
-// #define SPEAKER_2_PORT PORTC
-// #define SPEAKER_2_DDR DDRC
-// #define SPEAKER_2_BIT PORTC7
+#define SPEAKER_1_PORT PORTB
+#define SPEAKER_1_DDR DDRB
+#define SPEAKER_1_BIT PORTB1
 // -----------------------
 
 #endif

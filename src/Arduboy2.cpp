@@ -6,6 +6,14 @@
 
 #include "Arduboy2.h"
 
+#ifdef ARDUBOY_TINY
+// Tiny does not have up, down or B buttons;
+// it is better to define these here
+#define UP_BUTTON LEFT_BUTTON
+#define DOWN_BUTTON RIGHT_BUTTON
+#define B_BUTTON A_BUTTON
+#endif
+
 //========================================
 //========== class Arduboy2Base ==========
 //========================================
@@ -61,6 +69,7 @@ void Arduboy2Base::beginDoFirst()
 
 void Arduboy2Base::flashlight()
 {
+#ifndef ARDUBOY_TINY
   if (!pressed(UP_BUTTON)) {
     return;
   }
@@ -78,10 +87,12 @@ void Arduboy2Base::flashlight()
   while (true) {
     idle();
   }
+#endif // ARDUBOY_TINY
 }
 
 void Arduboy2Base::systemButtons()
 {
+  
   while (pressed(B_BUTTON)) {
     digitalWriteRGB(BLUE_LED, RGB_ON); // turn on blue LED
     sysCtrlSound(UP_BUTTON + B_BUTTON, GREEN_LED, 0xff);
@@ -262,6 +273,7 @@ bool Arduboy2Base::nextFrame()
   return true;
 }
 
+#ifndef ARDUBOY_TINY
 bool Arduboy2Base::nextFrameDEV()
 {
   bool ret = nextFrame();
@@ -274,6 +286,7 @@ bool Arduboy2Base::nextFrameDEV()
   }
   return ret;
 }
+#endif
 
 int Arduboy2Base::cpuLoad()
 {
